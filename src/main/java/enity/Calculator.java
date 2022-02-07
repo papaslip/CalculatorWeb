@@ -1,33 +1,41 @@
 package enity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Calculator {
-    private User user;
-    List<Operation> operationStorage = new ArrayList<>();
-
-    public Calculator(User user) {
-        this.user = user;
-    }
-
-    public List<Operation> getOperationStorage(){
-        return operationStorage;
+    public Calculator() {
     }
 
     public String resultOfOperation(double num1, double num2, String operator){
         double result = 0;
-        if(operator.equals("+")){
+        String mathoperator="+";
+        if(operator.equals("sum")){
                 result = num1+num2;
-         }else if(operator.equals("-")){
+         }else if(operator.equals("sub")){
                 result = num1-num2;
-         }else if(operator.equals("*")){
+            mathoperator="-";
+         }else if(operator.equals("mul")){
                 result = num1*num2;
-         }else if(operator.equals("/")){
+            mathoperator="*";
+         }else if(operator.equals("div")){
                result = num1/num2;
+            mathoperator="/";
          }
-        operationStorage.add(new Operation(user,num1,num2,operator,result));
-    return num1+" "+operator+" "+num2+" = "+result;
+    return num1+" "+mathoperator+" "+num2+" = "+result;
     }
-
+    public double resultDoubleOfOperation(double num1, double num2, String operator){
+        double result = 0;
+        String mathoperator="+";
+        if(operator.equals("sum")){
+            result = num1+num2;
+        }else if(operator.equals("sub")){
+            result = num1-num2;
+            mathoperator="-";
+        }else if(operator.equals("mul")){
+            result = num1*num2;
+            mathoperator="*";
+        }else if(operator.equals("div")){
+            result = num1/num2;
+            mathoperator="/";
+        }
+        return result;
+    }
 }
