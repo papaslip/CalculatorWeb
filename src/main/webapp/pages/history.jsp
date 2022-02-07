@@ -36,8 +36,9 @@
         <form action="/deloperation" method="post">
         <label class="col-sm-10 col-form-label">${item}</label>
         <input type="hidden" name="id" value="${item.getIdString()}">
-        <button class="btn btn-outline-dark my-2">delete</button>
-<%--        </form>--%>
+        <button type="submit" class="btn btn-outline-dark my-2">delete</button>
+        </form>
+
 <%--        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">--%>
 <%--            Delete--%>
 <%--        </button>--%>
@@ -55,15 +56,11 @@
 <%--                    </div>--%>
 <%--                    <div class="modal-footer">--%>
 <%--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>--%>
-<%--                        <form action="/deloperation" method="post">--%>
-<%--                        <input type="hidden" name="id" value="${item.getIdString()}">--%>
-<%--                            <button class="btn btn-outline-dark my-2">Yes</button>--%>
-<%--                        </form>--%>
+<%--                        <button class="btn btn-outline-dark my-2">Yes</button>--%>
 <%--                    </div>--%>
 <%--                </div>--%>
 <%--            </div>--%>
 <%--        </div>--%>
-
     </c:forEach>
 </ul>
             </div>

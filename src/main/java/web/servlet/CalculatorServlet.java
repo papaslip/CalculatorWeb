@@ -1,4 +1,4 @@
-package servlet;
+package web.servlet;
 import enity.Calculator;
 import enity.User;
 import service.UserService;

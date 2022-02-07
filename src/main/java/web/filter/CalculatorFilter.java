@@ -1,4 +1,4 @@
-package filter;
+package web.filter;
 import enity.User;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -8,15 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(servletNames = "AuthorizationServlet")
-public class AuthorizationFilter extends HttpFilter {
+@WebFilter(servletNames = "CalculatorServlet")
+public class CalculatorFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         User user = (User) req.getSession().getAttribute("user");
         if(user==null){
-            chain.doFilter(req, res);
+            res.getWriter().println("You are not logged in!");
         }else{
-            res.getWriter().println("You are logged in!");
+            chain.doFilter(req, res);
         }
     }
 }

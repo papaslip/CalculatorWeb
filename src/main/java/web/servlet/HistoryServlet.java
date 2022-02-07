@@ -1,4 +1,4 @@
-package servlet;
+package web.servlet;
 import enity.Operation;
 import enity.User;
 import repository.StorageOperations;

@@ -1,9 +1,9 @@
-package servlet;
+package web.servlet;
 
 import enity.User;
 
 import repository.AccountVerification;
-import storage.UserStorage;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

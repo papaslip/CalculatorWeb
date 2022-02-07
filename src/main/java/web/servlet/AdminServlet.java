@@ -1,4 +1,4 @@
-package servlet;
+package web.servlet;
 
 import service.AdminService;
 

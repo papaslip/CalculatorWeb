@@ -1,4 +1,4 @@
-package filter;
+package web.filter;
 import enity.User;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
