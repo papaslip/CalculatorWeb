@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Registration</title>
@@ -40,6 +41,11 @@
                     <label class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-10">
                         <input type="text" name="userName" class="form-control" placeholder="Username" required>
+                        <c:if test="${requestScope.message!=null}">
+
+                                    <input type="text" class="form-control alert alert-danger my-2" value="${requestScope.message}">
+
+                        </c:if>
                     </div>
                 </div>
                 <div class="form-group row my-2">

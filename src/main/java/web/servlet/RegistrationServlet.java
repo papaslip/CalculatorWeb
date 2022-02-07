@@ -1,4 +1,5 @@
 package web.servlet;
+import repository.AccountVerification;
 import service.UserService;
 
 import javax.servlet.ServletException;
@@ -10,7 +11,6 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/registration", name = "RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
-    private UserStorage userStorage = new UserStorage();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req,resp);
@@ -22,16 +22,18 @@ public class RegistrationServlet extends HttpServlet {
         String userName = req.getParameter("userName");
         String pass = req.getParameter("pass");
         String answer = req.getParameter("answer");
+        AccountVerification accountVerification = new AccountVerification();
+        if(accountVerification.checkUserName(userName)){
+            req.setAttribute("message", "This user is registered");
+            req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req,resp);
+        }else {
         try{
             int question = Integer.parseInt(req.getParameter("question"));
             UserService userService = UserService.getInstance();
             userService.addUser(name,userName,pass,question,answer);
         }catch (Exception e){
-
         }
-
-
-
         resp.sendRedirect("/");
+        }
     }
 }

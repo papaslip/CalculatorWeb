@@ -14,8 +14,8 @@ public class AdminService {
 
     public void greatTables(){
         TableCreator tableCreator = new TableCreator();
-//        tableCreator.createSecretQuestionTable();
-//        tableCreator.createUsersTable();
+        tableCreator.createSecretQuestionTable();
+        tableCreator.createUsersTable();
         tableCreator.createStorageOfOperationTable();
     }
 }

@@ -16,11 +16,9 @@ import java.util.Optional;
 
 @WebServlet(urlPatterns = "/authorization", name = "AuthorizationServlet")
 public class AuthorizationServlet extends HttpServlet {
-    private final UserStorage userStorage = new UserStorage();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getServletContext().getRequestDispatcher("/pages/logIn.jsp").forward(req,resp);
-
     }
 
     @Override
