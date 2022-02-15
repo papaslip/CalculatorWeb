@@ -1,14 +1,31 @@
-package repository;
+package dao;
 import enity.Operation;
 import enity.User;
+import repository.DBConnection;
 
 import java.sql.*;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class StorageOperations {
-    private DBConnection dbConnection = new DBConnection();
-    private Connection connection = dbConnection.getConnection();
+public class OperationDAO {
+    private DBConnection dbConnection;
+    private Connection connection;
+    private static final String SQL_COUNT = "SELECT COUNT(*) FROM storageofoperation";
+
+    public OperationDAO(){
+        setConnection();
+    }
+
+    private void setConnection(){
+        this.dbConnection = new DBConnection();
+        Optional optional = dbConnection.getConnection();
+        if(optional.isPresent()){
+            this.connection = (Connection) optional.get();
+        }else {
+
+        }
+    }
 
     public void createOperation(double num1, double num2, String operator, double result, int user, String data){
         if(connection!=null){
@@ -28,10 +45,10 @@ public class StorageOperations {
 
         }
     }
-    public CopyOnWriteArrayList getOperationsByUser(User user) throws SQLException {
+    public CopyOnWriteArrayList getOperationsByUser(User user, int index) throws SQLException {
         List<Operation> list = new CopyOnWriteArrayList<>();
-        Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select * from storageofoperation where `user` = '"+user.getId()+"'");
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from storageofoperation where `user` = '"+user.getId()+"' limit "+index+",5");
+        ResultSet rs = preparedStatement.executeQuery();
         while (rs.next()){
                 int id = rs.getInt(1);
                 double num1 = rs.getDouble(2);
@@ -60,5 +77,17 @@ public class StorageOperations {
             }
         }
 
+    }
+
+    public int getCount(int userID) throws SQLException {
+        int count=0;
+        if(connection!=null){
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("select count(*) from storageofoperation where `user` = '"+userID+"'");
+            while(rs.next()){
+                count = rs.getInt(1);
+            }
+        }
+        return count;
     }
 }

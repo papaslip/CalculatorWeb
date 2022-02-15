@@ -3,10 +3,25 @@ package repository;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 
 public class TableCreator {
-    private DBConnection dbConnection = new DBConnection();
-    private Connection connection = dbConnection.getConnection();
+    private DBConnection dbConnection;
+    private Connection connection;
+
+    public TableCreator(){
+        setConnection();
+    }
+
+    private void setConnection(){
+        this.dbConnection = new DBConnection();
+        Optional optional = dbConnection.getConnection();
+        if(optional.isPresent()){
+            this.connection = (Connection) optional.get();
+        }else {
+
+        }
+    }
     public void createSecretQuestionTable(){
 
         if(connection!=null){

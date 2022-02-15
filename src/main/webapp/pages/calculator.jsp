@@ -16,6 +16,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
     </a>
+    <img height="30" width="30" src="https://cdn2.iconfinder.com/data/icons/ios7-inspired-mac-icon-set/512/Calculator_512.png" alt="MDN logo">
+    <a class="navbar-brand" href="#">
     <a class="navbar-brand" href="/">HOME</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -40,8 +42,8 @@
                 <div class="form-group row my-2">
                     <label class="col-sm-3 col-form-label">Operator</label>
                     <div class="form-group col-md-3">
-                        <select name = "operator" class="form-control">
-                            <option selected>Choose...</option>
+                        <select type = "button" name = "operator" class="form-control">
+
                             <option value="sum">+</option>
                             <option value="sub">-</option>
                             <option value="mul">*</option>

@@ -2,11 +2,26 @@ package repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Optional;
 
 
 public class UserCreator {
-    private DBConnection dbConnection = new DBConnection();
-    private Connection connection = dbConnection.getConnection();
+    private DBConnection dbConnection;
+    private Connection connection;
+
+    public UserCreator(){
+        setConnection();
+    }
+
+    private void setConnection(){
+        this.dbConnection = new DBConnection();
+        Optional optional = dbConnection.getConnection();
+        if(optional.isPresent()){
+            this.connection = (Connection) optional.get();
+        }else {
+
+        }
+    }
 
     public void createUser(String name,String userName, String pass, int question, String answer){
         if(connection!=null){

@@ -1,6 +1,6 @@
-package web.servlet;
+package web.servlet.history;
 
-import repository.StorageOperations;
+import dao.OperationDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +14,7 @@ public class OperationDeletingServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
-        StorageOperations storageOperations = new StorageOperations();
+        OperationDAO storageOperations = new OperationDAO();
         storageOperations.deleteOperationByid(id);
         resp.sendRedirect("/history");
     }

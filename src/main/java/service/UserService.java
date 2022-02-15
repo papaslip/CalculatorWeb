@@ -1,6 +1,6 @@
 package service;
 
-import repository.StorageOperations;
+import dao.OperationDAO;
 import repository.UserCreator;
 
 public class UserService {
@@ -19,7 +19,7 @@ public class UserService {
         userCreator.createUser(name,userName, pass,question, answer);
     }
     public void addOperationToStorage(double num1,double num2,String operator,double result, int user, String data){
-        StorageOperations operationCreator = new StorageOperations();
+        OperationDAO operationCreator = new OperationDAO();
         operationCreator.createOperation(num1,num2,operator,result,user,data);
     }
 

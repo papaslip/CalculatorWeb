@@ -1,5 +1,6 @@
 package web.servlet;
 
+import dao.ValueListHandler;
 import enity.User;
 
 import repository.AccountVerification;
@@ -36,6 +37,8 @@ public class AuthorizationServlet extends HttpServlet {
                 if(optional.isPresent()){
                     User user = (User) accountVerification.getUserByUsernameAndPass(userName,pass).get();
                     req.getSession().setAttribute("user", user);
+                    ValueListHandler valueListHandler = new ValueListHandler(user);
+                    req.getSession().setAttribute("valueListHandler", valueListHandler);
                     resp.sendRedirect("/");
                 }else {
                     req.setAttribute("message", "This incorrect pass");

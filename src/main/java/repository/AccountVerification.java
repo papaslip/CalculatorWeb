@@ -1,17 +1,34 @@
 package repository;
 
+import enity.Operation;
 import enity.User;
 
 import java.sql.*;
 import java.util.Optional;
 
 public class AccountVerification {
-    private DBConnection dbConnection = new DBConnection();
-    private Connection connection = dbConnection.getConnection();
+    private DBConnection dbConnection;
+    private Connection connection;
+
+    public AccountVerification(){
+        setConnection();
+    }
+
+    private void setConnection(){
+       this.dbConnection = new DBConnection();
+       Optional optional = dbConnection.getConnection();
+       if(optional.isPresent()){
+           this.connection = (Connection) optional.get();
+       }else {
+
+       }
+    }
 
     public boolean checkUserName(String username){
         boolean x = false;
         try (PreparedStatement ps = connection.prepareStatement("select id from `Users` where `UserName` = ?")) {
+
+            //
             ps.setString(1, username);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -28,7 +45,7 @@ public class AccountVerification {
 
         Statement statement = connection.createStatement();
         User user = null;
-        Optional returningUser = null;
+        Optional returningUser = Optional.empty();
         ResultSet rs = statement.executeQuery("select * from users where `UserName` = '"+username+"'");
         while (rs.next()){
             if(rs.getString(4).equals(pass)){
